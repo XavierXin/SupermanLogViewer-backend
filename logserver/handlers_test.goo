@@ -1,0 +1,82 @@
+package main
+
+import (
+	"testing"
+
+	"../logparser"
+	"github.com/davecgh/go-spew/spew"
+)
+
+func TestGenerateSplitViewList_Happy(t *testing.T) {
+	daemonsLog := make([]*LogEntryList, 3)
+	daemonsLog[0] = &LogEntryList{
+		List: []*logparser.LogEntry{
+			&logparser.LogEntry{
+				DaemonName:    "daemon1",
+				AbsoluteIndex: 79,
+			},
+			&logparser.LogEntry{
+				DaemonName:    "daemon1",
+				AbsoluteIndex: 81,
+			},
+		},
+	}
+	daemonsLog[1] = &LogEntryList{
+		List: []*logparser.LogEntry{
+			&logparser.LogEntry{
+				DaemonName:    "daemon2",
+				AbsoluteIndex: 1,
+			},
+			&logparser.LogEntry{
+				DaemonName:    "daemon2",
+				AbsoluteIndex: 8,
+			},
+			&logparser.LogEntry{
+				DaemonName:    "daemon2",
+				AbsoluteIndex: 89,
+			},
+			&logparser.LogEntry{
+				DaemonName:    "daemon2",
+				AbsoluteIndex: 777,
+			},
+			&logparser.LogEntry{
+				DaemonName:    "daemon2",
+				AbsoluteIndex: 888,
+			},
+			&logparser.LogEntry{
+				DaemonName:    "daemon2",
+				AbsoluteIndex: 9009,
+			},
+			&logparser.LogEntry{
+				DaemonName:    "daemon2",
+				AbsoluteIndex: 90010,
+			},
+		},
+	}
+	daemonsLog[2] = &LogEntryList{
+		List: []*logparser.LogEntry{
+			&logparser.LogEntry{
+				DaemonName:    "daemon3",
+				AbsoluteIndex: 37,
+			},
+			&logparser.LogEntry{
+				DaemonName:    "daemon3",
+				AbsoluteIndex: 88,
+			},
+			&logparser.LogEntry{
+				DaemonName:    "daemon3",
+				AbsoluteIndex: 90,
+			},
+			&logparser.LogEntry{
+				DaemonName:    "daemon3",
+				AbsoluteIndex: 345,
+			},
+			&logparser.LogEntry{
+				DaemonName:    "daemon3",
+				AbsoluteIndex: 9999,
+			},
+		},
+	}
+	spliViewList := generateSplitViewList(daemonsLog)
+	spew.Dump(spliViewList)
+}

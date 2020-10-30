@@ -1,0 +1,15 @@
+package main
+
+import (
+	"io/ioutil"
+	"testing"
+)
+
+func TestParseLogLines_Happy(t *testing.T) {
+	logBytes, err := ioutil.ReadFile("./test_log/engineering.log")
+	if err != nil {
+		t.Error("cannot read test log")
+	}
+
+	ParseLogString(string(logBytes))
+}
